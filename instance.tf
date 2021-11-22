@@ -7,7 +7,7 @@ variable "instance_name" {
 
 
 resource "aws_instance" "net4io" {
-    ami = "ami-0d49e075a6e6db2a1"
+    ami = "ami-0a19ee9fe8c518fbf"
     instance_type = "t2.micro"
     key_name = "net4io"
     security_groups = [ "dynamic-sg" ]
