@@ -19,13 +19,10 @@ resource "aws_security_group" "dynamicsg" {
     }
   }
 
-  dynamic "egress" {
-    for_each = var.sg_ports
-    content {
-      from_port   = egress.value
-      to_port     = egress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
