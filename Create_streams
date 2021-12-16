@@ -1,0 +1,31 @@
+#https://github.com/aler9/rtsp-simple-server
+
+setup rtsp-simple-server
+
+1.	Publish a stream. For instance, you can publish a video/audio file with FFmpeg:
+	
+	ffmpeg -re -stream_loop -1 -i test.mp4 -c copy -f rtsp rtsp://localhost:8554/mystream
+
+	or GStreamer:
+	gst-launch-1.0 rtspclientsink name=s location=rtsp://localhost:8554/mystream filesrc location=test.mp4 ! qtdemux name=d d.video_0 ! queue ! s.sink_0 d.audio_0 ! queue ! s.sink_1
+
+	
+2.	Open the stream. For instance, you can open the stream with VLC:
+	
+	vlc rtsp://localhost:8554/mystream
+
+	or GStreamer:
+	gst-play-1.0 rtsp://localhost:8554/mystream
+
+	or FFmpeg:
+	ffplay -i rtsp://localhost:8554/mystream
+
+
+
+play a stream in ffplay 
+	- ffplay -i rtsp://192.168.1.38:8000/live
+
+run a stream
+	- ffmpeg -v verbose -i rtsp://192.168.1.38:8000/live -vf scale=1280:720 -vcodec libx264 -r 25 -b:v 1000000 -crf 31 -acodec aac -sc_threshold 0 -f hls -hls_time 5 -segment_time 5 -hls_list_size 5 C:\Users\crazyguy\Desktop\web\videos\stream.m3u8
+
+
