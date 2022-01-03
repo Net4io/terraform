@@ -1,23 +1,19 @@
 # create elastic IP Address and attach it
 # variable to set instance name
-variable "instance_name" {
-        description = "Instance Name for the client"
-        type = string
-    }
 
 
 resource "aws_instance" "net4io" {
-    ami = "ami-0a19ee9fe8c518fbf"
+    ami = "ami-0d49e075a6e6db2a1"
     instance_type = "t2.micro"
     key_name = "net4io"
-    security_groups = [ "dynamic-sg" ]
+    security_groups = [aws_security_group.instancesg.name]
 
     tags = {
       Name = "${var.instance_name}"
     }
 }
 
-output "instance_private_ip" {
-    description = "AWS Instance private IP"
-    value = aws_instance.net4io.private_ip
+output "instance_public_ip" {
+    description = "AWS Instance public/elastic IP"
+    value = aws_instance.net4io.public_ip
 }
