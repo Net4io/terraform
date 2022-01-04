@@ -13,7 +13,7 @@ resource "aws_instance" "net4io" {
     }
 }
 
-output "instance_public_ip" {
-    description = "AWS Instance public/elastic IP"
-    value = aws_instance.net4io.public_ip
+output "instance_private_ip" {
+    description = "AWS Instance private IP"
+    value = aws_instance.net4io.private_ip
 }
