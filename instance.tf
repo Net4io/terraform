@@ -4,7 +4,7 @@
 
 resource "aws_instance" "net4io" {
     ami = "ami-0d49e075a6e6db2a1"
-    instance_type = "t2.micro"
+    instance_type = "g4dn.xlarge"
     key_name = "net4io"
     security_groups = [aws_security_group.instancesg.name]
 
