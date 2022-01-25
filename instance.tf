@@ -5,15 +5,15 @@
 resource "aws_instance" "net4io" {
     ami = "ami-09a56048b08f94cdf"
     instance_type = "g4dn.xlarge"
+    #instance_type = "t2.micro"
     key_name = "net4io"
 
     security_groups = [aws_security_group.instancesg.name]
 
-    ebs_block_device  {
-      device_name = "/dev/sdh"
-      volume_type = "gp2"
-      volume_size = "30"
-    }
+    root_block_device {
+         volume_type = "gp2"
+         volume_size = 40
+      }
 
     tags = {
       Name = "${var.instance_name}"
